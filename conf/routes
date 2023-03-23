@@ -1,0 +1,52 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# HomeController
+
+GET     /user                                   controllers.UserController.profile()
+GET     /user/post                              controllers.PostController.profilePosts()
++ nocsrf
+POST    /user/post                              controllers.PostController.post()
++ nocsrf
+PUT     /user/post/:postId                      controllers.PostController.editPost(postId: Long)
++ nocsrf
+PUT     /user/email                             controllers.UserController.email()
++ nocsrf
+PUT     /user/password                          controllers.UserController.password()
++ nocsrf
+POST    /user/picture                           controllers.UserController.profilePicture()
+GET     /user/request                           controllers.FriendRequestController.getFriendRequests()
++ nocsrf
+PUT     /user/request/:requestId/accept         controllers.FriendRequestController.acceptFriendRequest(requestId: Long)
++ nocsrf
+PUT     /user/request/:requestId/reject         controllers.FriendRequestController.rejectFriendRequest(requestId: Long)
+GET     /user/friend                            controllers.UserController.getFriends()
+GET     /user/friend/post                       controllers.PostController.getFriendsPosts()
+GET     /search/:username                       controllers.UserController.search(username: String)
+
+# Friend Requests
++ nocsrf
+POST    /profile/:receiverId                    controllers.FriendRequestController.sendFriendRequest(receiverId: Long)
+
+# Friends
+GET     /profile/:friendId/post                 controllers.PostController.getFriendPosts(friendId: Long)
+
+# Liking posts
++ nocsrf
+POST    /profile/:friendId/post/:postId         controllers.LikeController.likePost(friendId: Long, postId: Long)
+# Disliking posts
++ nocsrf
+PUT     /profile/:friendId/post/:postId         controllers.LikeController.dislikeLikedPost(friendId: Long, postId: Long)
+GET     /profile/:friendId/post/:postId/likes   controllers.LikeController.numberOfLikes(friendId: Long, postId: Long)
+
+# AuthenticationController
+
++ nocsrf
+POST    /login                                  controllers.AuthenticationController.login()
++ nocsrf
+POST    /register                               controllers.AuthenticationController.register()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                           controllers.Assets.versioned(path="/public", file: Asset)
