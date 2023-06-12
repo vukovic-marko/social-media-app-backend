@@ -26,7 +26,7 @@ Make sure you have the following software installed:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/social-media-app-backend.git
+   git clone https://github.com/vukovic-marko/social-media-app-backend.git
    ```
 2. Navigate to the project directory:
 
